@@ -38,7 +38,7 @@ async function main() {
     }
 
     // Check for exit commands
-    const messageText = String(userMessage);
+    const messageText = userMessage;
     if (
       messageText === "exit" ||
       messageText === "quit" ||
@@ -71,7 +71,7 @@ async function main() {
       spinner.stop("AI response received");
 
       // Display the assistant's response
-      console.log(`\nAI: ${text}\n`);
+      prompts.note(text, "AI Response");
 
       // Add the assistant's response to the conversation history
       messages.push({

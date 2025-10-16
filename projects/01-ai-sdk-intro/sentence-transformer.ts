@@ -59,9 +59,7 @@ async function main() {
     const { object: user } = await generateObject({
       model: google("gemini-2.5-flash-lite"),
       schema: UserSchema,
-      prompt: `Generate a realistic mock user profile based on this description: "${String(
-        description
-      )}". 
+      prompt: `Generate a realistic mock user profile based on this description: "${description}". 
                Make sure all fields are filled with believable, creative data.`,
     });
 
@@ -88,7 +86,7 @@ Interests: ${user.interests.join(", ")}`,
   } catch (error) {
     spinner.stop("❌ Generation failed");
     prompts.log.error(
-      `Error: ${error instanceof Error ? error.message : String(error)}`
+      `Error: ${error instanceof Error ? error.message : error}`
     );
     return;
   }
