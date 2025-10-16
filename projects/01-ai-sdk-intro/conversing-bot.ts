@@ -1,4 +1,5 @@
 import { generateText } from "ai";
+import type { UserModelMessage, AssistantModelMessage } from "ai";
 import { google } from "@ai-sdk/google";
 import * as prompts from "@clack/prompts";
 import process from "node:process";
@@ -8,7 +9,7 @@ import process from "node:process";
 
 // Step 1: Initialize the messages array to maintain conversation history
 // The messages array stores both user and assistant messages
-const messages: Array<{ role: "user" | "assistant"; content: string }> = [];
+const messages: Array<UserModelMessage | AssistantModelMessage> = [];
 
 async function main() {
   prompts.intro("🤖 Conversational CLI Bot");
@@ -61,7 +62,7 @@ async function main() {
       // Step 3: Generate a Response with generateText
       // Pass the entire messages history to maintain context
       const { text } = await generateText({
-        model: google("gemini-2.0-flash-exp"),
+        model: google("gemini-2.5-flash-lite"),
         messages: messages, // Send the full conversation history
         system:
           "You are a helpful and friendly AI assistant. Keep your responses concise and conversational.",
